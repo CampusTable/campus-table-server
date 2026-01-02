@@ -43,13 +43,13 @@ jobs:
       - name: Gradle Wrapper 실행권한 부여
         run: chmod +x gradlew
 
-      # application-prod.yml 파일을 빌드 전에 생성
-      - name: Create application-prod.yml from secret
+      - name: application-prod.yml 파일 생성
         run: |
-          mkdir -p src/main/resources
-          cat << 'EOF' > ./src/main/resources/application-prod.yml
-          ${{ secrets.APPLICATION_PROD_YML }}
-          EOF
+          echo "${{ secrets.APPLICATION_PROD_YML }}" > CT-web/src/main/resources/application-prod.yml
+
+      - name: config-imports.yml 파일 생성
+        run: |
+          echo "${{ secrets.CONFIG_IMPORTS_YML }}" > CT-web/src/main/resources/config-imports.yml
 
       # 브랜치 별 active profile 설정
       - name: Decide active profile
