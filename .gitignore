@@ -40,4 +40,6 @@ out/
 .kotlin
 
 ### ENV ###
-application-*.yml
+CT-web/src/main/resources/application-*.yml
+CT-web/src/main/resources/config-imports.yml
+CT-web/src/main/resources/springdoc.yml
