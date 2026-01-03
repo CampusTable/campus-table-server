@@ -1,4 +1,4 @@
-package com.chuseok22.campustableserver
+package com.chuseok22.ctweb
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
