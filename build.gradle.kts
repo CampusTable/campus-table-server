@@ -12,7 +12,7 @@ plugins {
 
 allprojects {
   group = "com.chuseok22"
-  version = "0.0.1-SNAPSHOT"
+version = "0.1.0"
   description = "campus-table-server"
 
   repositories {
