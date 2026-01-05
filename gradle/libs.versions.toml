@@ -4,6 +4,8 @@ kotlin = "1.9.25"
 springBoot = "3.5.9"
 springDependencyManagement = "1.1.7"
 swaggerUI = "3.0.1"
+jjwt = "0.12.7"
+kotlinLogging = "7.0.14"
 apiChangeLog = "1.0.1"
 sejongPortalLogin = "1.0.0"
 httpLogging = "0.0.9"
@@ -42,6 +44,12 @@ junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher
 
 # Swagger UI
 swagger-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "swaggerUI" }
+
+# JJWT
+jjwt = { module = "io.jsonwebtoken:jjwt", version.ref = "jjwt" }
+
+# Kotlin Logging
+kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }
 
 # Chuseok22 ApiChangeLog
 api-change-log = { module = "com.chuseok22:ApiChangeLog", version.ref = "apiChangeLog" }

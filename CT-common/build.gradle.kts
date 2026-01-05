@@ -25,6 +25,9 @@ dependencies {
   // Jackson
   api(libs.jackson.module.kotlin)
 
+  // Kotlin Logging
+  api(libs.kotlin.logging)
+
   api(libs.kotlin.reflect)
   api(libs.kotlin.stdlib)
 }
