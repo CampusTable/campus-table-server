@@ -51,6 +51,10 @@ jobs:
         run: |
           echo "${{ secrets.CONFIG_IMPORTS_YML }}" > CT-web/src/main/resources/config-imports.yml
 
+      - name: springdoc.yml 파일 생성
+        run: |
+          echo "${{ secrets.SPRINGDOC_YML }}" > CT-web/src/main/resources/springdoc.yml
+
       # 브랜치 별 active profile 설정
       - name: Decide active profile
         id: profile
