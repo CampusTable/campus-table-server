@@ -4,6 +4,9 @@ kotlin = "1.9.25"
 springBoot = "3.5.9"
 springDependencyManagement = "1.1.7"
 swaggerUI = "3.0.1"
+apiChangeLog = "1.0.1"
+sejongPortalLogin = "1.0.0"
+httpLogging = "0.0.9"
 
 [libraries]
 # Spring Starter Web
@@ -39,6 +42,16 @@ junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher
 
 # Swagger UI
 swagger-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "swaggerUI" }
+
+# Chuseok22 ApiChangeLog
+api-change-log = { module = "com.chuseok22:ApiChangeLog", version.ref = "apiChangeLog" }
+
+# Chuseok22 Sejong Portal Login
+sejong-portal-login = { module = "com.chuseok22:sejong-portal-login", version.ref = "sejongPortalLogin" }
+
+# Chuseok22 Logging
+http-logging = { module = "com.chuseok22:logging", version.ref = "httpLogging" }
+
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

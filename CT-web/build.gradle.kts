@@ -9,5 +9,7 @@ dependencies {
   implementation(project(":CT-member"))
 
   implementation(libs.swagger.ui)
+  implementation(libs.http.logging)
+  implementation(libs.api.change.log)
 }
 
