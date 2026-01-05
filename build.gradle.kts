@@ -51,9 +51,9 @@ subprojects {
   }
 
   tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-      jvmTarget = "21"
-      freeCompilerArgs = listOf("-Xjsr305=strict")
+    compilerOptions {
+      jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+      freeCompilerArgs.add("-Xjsr305=strict")
     }
   }
 }

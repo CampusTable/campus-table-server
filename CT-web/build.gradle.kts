@@ -1,14 +1,6 @@
 plugins {
   id("java-library")
-}
-
-tasks.bootJar {
-  enabled = false
-}
-
-tasks.jar {
-  enabled = true
-  archiveClassifier.set("")
+  id("org.springframework.boot")
 }
 
 dependencies {
