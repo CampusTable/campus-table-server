@@ -1,9 +1,9 @@
 [versions]
 # Plugins & Core
-kotlin = "1.9.25"
+kotlin = "2.3.0"
 springBoot = "3.5.9"
 springDependencyManagement = "1.1.7"
-swaggerUI = "3.0.1"
+swaggerUI = "2.8.15"
 jjwt = "0.12.7"
 kotlinLogging = "7.0.14"
 apiChangeLog = "1.0.1"
