@@ -13,6 +13,7 @@ tasks.jar {
 
 dependencies {
   implementation(project(":CT-common"))
+  implementation(project(":CT-redis"))
 
   // Spring Security
   api(libs.spring.boot.starter.security)
