@@ -1,12 +1,14 @@
 package com.chuseok22.ctauth.infrastructure.config
 
 import com.chuseok22.ctauth.infrastructure.jwt.JwtProvider
+import com.chuseok22.ctauth.infrastructure.jwt.JwtStore
 import com.chuseok22.ctauth.infrastructure.properties.JwtProperties
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.data.redis.core.RedisTemplate
 import javax.crypto.SecretKey
 
 @Configuration
@@ -30,6 +32,14 @@ class JwtConfig(
    */
   @Bean
   fun jwtProvider(jwtSecretKey: SecretKey): JwtProvider {
-    return JwtProvider(jwtSecretKey(), properties)
+    return JwtProvider(jwtSecretKey, properties)
+  }
+
+  /**
+   * TokenStore 구현체 Bean 등록
+   */
+  @Bean
+  fun jwtStore(redisTemplate: RedisTemplate<String, String>): JwtStore {
+    return JwtStore(redisTemplate)
   }
 }

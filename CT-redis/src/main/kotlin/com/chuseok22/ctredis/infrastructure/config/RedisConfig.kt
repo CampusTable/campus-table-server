@@ -26,12 +26,12 @@ class RedisConfig(
    * Redis Factory
    */
   @Bean
-  fun redisConnectionFactory(redisProperties: RedisProperties): RedisConnectionFactory {
+  fun redisConnectionFactory(): RedisConnectionFactory {
 
     val config = RedisStandaloneConfiguration().apply {
       hostName = properties.host
       port = properties.port
-      setPassword(redisProperties.password)
+      setPassword(properties.password)
     }
 
     return LettuceConnectionFactory(config)
@@ -42,24 +42,28 @@ class RedisConfig(
    */
   @Bean
   fun redisTemplate(
-    connectionFactory: RedisConnectionFactory
+    factory: RedisConnectionFactory,
+    serializer: GenericJackson2JsonRedisSerializer
   ): RedisTemplate<String, Any> {
-    val objectMapper = createObjectMapper()
+
+    val stringSerializer = StringRedisSerializer()
 
     return RedisTemplate<String, Any>().apply {
-      this.connectionFactory = connectionFactory
+      connectionFactory = factory
 
-      // Key Serializer: String
-      keySerializer = StringRedisSerializer()
-      hashKeySerializer = StringRedisSerializer()
-
-      // Value Serializer: JSON
-      val jsonSerializer = GenericJackson2JsonRedisSerializer(objectMapper)
-      valueSerializer = jsonSerializer
-      hashValueSerializer = jsonSerializer
+      // 직렬화 설정
+      keySerializer = stringSerializer
+      hashKeySerializer = stringSerializer
+      valueSerializer = serializer
+      hashValueSerializer = serializer
 
       afterPropertiesSet()
     }
+  }
+
+  @Bean
+  fun redisSerializer(): GenericJackson2JsonRedisSerializer {
+    return GenericJackson2JsonRedisSerializer(createObjectMapper())
   }
 
   /**
