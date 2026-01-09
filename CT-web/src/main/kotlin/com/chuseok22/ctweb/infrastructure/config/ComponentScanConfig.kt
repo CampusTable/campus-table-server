@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @ComponentScan(basePackages = [
-  "com.chuseok22.*"
+  "com.chuseok22"
 ])
 class ComponentScanConfig {
 }
