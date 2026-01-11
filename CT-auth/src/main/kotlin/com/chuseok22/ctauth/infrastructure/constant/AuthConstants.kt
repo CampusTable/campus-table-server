@@ -16,4 +16,8 @@ object AuthConstants {
   const val REFRESH_TOKEN_CATEGORY: String = "refreshToken"
   const val REDIS_REFRESH_TOKEN_KEY_PREFIX: String = "RT:"
 
+  // API
+  const val API_REQUEST_PREFIX: String = "/api/"
+  const val ADMIN_REQUEST_PREFIX: String = "/admin/"
+  const val TEST_REQUEST_PREFIX: String = "/test/"
 }
