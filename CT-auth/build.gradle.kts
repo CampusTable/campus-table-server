@@ -13,6 +13,7 @@ tasks.jar {
 
 dependencies {
   implementation(project(":CT-common"))
+  implementation(project(":CT-member"))
   implementation(project(":CT-redis"))
 
   // Spring Security
