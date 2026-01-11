@@ -1,4 +1,4 @@
-package com.chuseok22.ctcommon.infrastructure.persistance
+package com.chuseok22.ctcommon.infrastructure.persistence
 
 import jakarta.persistence.Column
 import jakarta.persistence.EntityListeners
