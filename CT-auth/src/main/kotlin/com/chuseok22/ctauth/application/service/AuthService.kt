@@ -1,7 +1,10 @@
 package com.chuseok22.ctauth.application.service
 
 import com.chuseok22.ctauth.application.dto.request.LoginRequest
+import com.chuseok22.ctauth.application.dto.request.ReissueRequest
 import com.chuseok22.ctauth.application.dto.response.LoginResponse
+import com.chuseok22.ctauth.application.dto.response.ReissueResponse
+import com.chuseok22.ctauth.core.token.TokenManager
 import com.chuseok22.ctauth.core.token.TokenProvider
 import com.chuseok22.ctcommon.application.exception.CustomException
 import com.chuseok22.ctcommon.application.exception.ErrorCode
@@ -19,7 +22,8 @@ private val log = KotlinLogging.logger { }
 class AuthService(
   private val sejongPortalLoginService: SejongPortalLoginService,
   private val memberRepository: MemberRepository,
-  private val tokenProvider: TokenProvider
+  private val tokenProvider: TokenProvider,
+  private val tokenManager: TokenManager
 ) {
 
   @Transactional
@@ -37,17 +41,41 @@ class AuthService(
       }
 
     // 토큰 발급
-    val accessToken = tokenProvider.createAccessToken(member.id.toString())
-    val refreshToken = tokenProvider.createRefreshToken(member.id.toString())
+    val tokenPair = tokenManager.createTokenPair(member.id.toString())
 
     log.info { "로그인 성공: 학번=$studentNumber, 이름=$name" }
 
     return LoginResponse(
       studentNumber = studentNumber,
       name = name,
-      accessToken = accessToken,
-      refreshToken = refreshToken
+      accessToken = tokenPair.accessToken,
+      refreshToken = tokenPair.refreshToken
     )
+  }
+
+  @Transactional
+  fun reissue(request: ReissueRequest): ReissueResponse {
+    log.debug { "accessToken이 만료되어 재발급을 진행합니다" }
+    val memberId = tokenProvider.getMemberId(request.refreshToken)
+
+    log.debug { "기존에 저장된 refreshToken 삭제" }
+    tokenManager.removeRefreshTokenTtl(memberId)
+
+    log.debug { "새로운 accessToken, refreshToken 발급" }
+    val tokenPair = tokenManager.createTokenPair(memberId)
+
+    return ReissueResponse(
+      accessToken = tokenPair.accessToken,
+      refreshToken = tokenPair.refreshToken
+    )
+  }
+
+  @Transactional
+  fun logout(member: Member) {
+    val memberId = member.id
+    log.debug { "로그아웃을 진행합니다: 회원=$memberId" }
+    log.debug { "기존에 저장된 refreshToken 삭제" }
+    tokenManager.removeRefreshTokenTtl(memberId.toString())
   }
 
   private fun sejongPortalLogin(sejongPortalId: String, sejongPortalPw: String): SejongMemberInfo {
