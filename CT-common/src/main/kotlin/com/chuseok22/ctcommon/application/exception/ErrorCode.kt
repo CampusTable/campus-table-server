@@ -20,5 +20,9 @@ enum class ErrorCode(
   MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "회원을 찾을 수 없습니다"),
 
   // Auth
-  SEJONG_PORTAL_LOGIN_FAILED(HttpStatus.BAD_REQUEST, "세종대학교 포털 로그인 실패")
+  SEJONG_PORTAL_LOGIN_FAILED(HttpStatus.BAD_REQUEST, "세종대학교 포털 로그인 실패"),
+
+  // Storage
+  INVALID_FILE_REQUEST(HttpStatus.BAD_REQUEST, "잘못된 파일 요청입니다"),
+  INVALID_FILE_EXTENSION(HttpStatus.BAD_REQUEST, "유효하지 않은 파일 확장자입니다"),
 }
