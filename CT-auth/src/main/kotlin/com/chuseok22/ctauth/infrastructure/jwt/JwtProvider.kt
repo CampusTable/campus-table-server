@@ -19,20 +19,18 @@ class JwtProvider(
   private val properties: JwtProperties
 ) : TokenProvider {
 
-  override fun createAccessToken(memberId: String, role: String): String {
+  override fun createAccessToken(memberId: String): String {
     return createToken(
       category = AuthConstants.ACCESS_TOKEN_CATEGORY,
       memberId = memberId,
-      role = role,
       expMillis = properties.accessExpMillis
     ).also { log.info { "엑세스 토큰 생성완료: memberId = $memberId" } }
   }
 
-  override fun createRefreshToken(memberId: String, role: String): String {
+  override fun createRefreshToken(memberId: String): String {
     return createToken(
       category = AuthConstants.REFRESH_TOKEN_CATEGORY,
       memberId = memberId,
-      role = role,
       expMillis = properties.refreshExpMillis
     ).also { log.info { "리프레시 토큰 생성완료: memberId = $memberId" } }
   }
@@ -82,14 +80,12 @@ class JwtProvider(
   private fun createToken(
     category: String,
     memberId: String,
-    role: String,
     expMillis: Long
   ): String {
     val now = Instant.now()
     return Jwts.builder()
       .subject(memberId)
       .claim("category", category)
-      .claim("role", role)
       .issuer(properties.issuer)
       .issuedAt(Date.from(now))
       .expiration(Date.from(now.plusMillis(expMillis)))

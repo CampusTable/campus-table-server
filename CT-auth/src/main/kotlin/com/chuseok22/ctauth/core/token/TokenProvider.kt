@@ -7,12 +7,12 @@ interface TokenProvider {
   /**
    * accessToken 생성
    */
-  fun createAccessToken(memberId: String, role: String): String
+  fun createAccessToken(memberId: String): String
 
   /**
    * refreshToken 생성
    */
-  fun createRefreshToken(memberId: String, role: String): String
+  fun createRefreshToken(memberId: String): String
 
   /**
    * 토큰 유효 검사
