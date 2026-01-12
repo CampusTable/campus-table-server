@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 import java.util.*
 
 interface MemberRepository : JpaRepository<Member, UUID> {
-  fun findByStudentName(studentName: String)
+  fun findByStudentNameAndDeletedFalse(studentName: String): Member?
 }
