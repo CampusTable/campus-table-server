@@ -19,7 +19,8 @@ class CustomUserDetails(
   }
 
   override fun getMemberId(): String {
-    return member.id.toString()
+    return member.id?.toString()
+      ?: throw IllegalStateException("memberId가 초기화 되지 않았습니다")
   }
 
   override fun getUsername(): String {
