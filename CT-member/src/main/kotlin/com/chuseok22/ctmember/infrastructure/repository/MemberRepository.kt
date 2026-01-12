@@ -7,5 +7,5 @@ import java.util.*
 interface MemberRepository : JpaRepository<Member, UUID> {
 
   fun findByIdAndDeletedFalse(memberId: UUID): Member?
-  fun findByStudentNameAndDeletedFalse(studentName: String): Member?
+  fun findByStudentNumberAndDeletedFalse(studentNumber: String): Member?
 }

@@ -24,7 +24,7 @@ class CustomUserDetails(
   }
 
   override fun getUsername(): String {
-    return member.studentName
+    return member.studentNumber
   }
 
   override fun getRoles(): List<String> {
