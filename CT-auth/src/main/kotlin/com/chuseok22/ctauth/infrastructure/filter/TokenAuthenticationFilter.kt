@@ -71,6 +71,11 @@ class TokenAuthenticationFilter(
       log.error { "만료된 JWT: ${e.message}" }
       sendErrorResponse(response, ErrorCode.EXPIRED_JWT)
       return
+    } catch (e: Exception) {
+      SecurityContextHolder.clearContext()
+      log.error { "인증 처리 중 예외 발생: ${e.message}" }
+      sendErrorResponse(response, ErrorCode.UNAUTHORIZED)
+      return
     }
   }
 
