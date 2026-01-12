@@ -14,16 +14,16 @@ open class Member protected constructor() : BaseEntity() {
     protected set
 
   @field:Column(name = "student_name", nullable = false, unique = true)
-  var studentName: String = ""
+  lateinit var studentName: String
     protected set
 
   @field:Column(name = "name", nullable = false)
-  var name: String = ""
+  lateinit var name: String
     protected set
 
   @field:Enumerated(EnumType.STRING)
   @field:Column(name = "role", nullable = false)
-  var role: Role = Role.ROLE_USER
+  lateinit var role: Role
     protected set
 
   private constructor(studentName: String, name: String, role: Role) : this() {
