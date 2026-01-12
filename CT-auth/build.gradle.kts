@@ -18,12 +18,14 @@ dependencies {
 
   // Spring Security
   api(libs.spring.boot.starter.security)
-  api(libs.spring.security.test)
+  implementation(libs.spring.security.test)
 
   // JWT
-  api(libs.jjwt)
+  implementation(libs.jjwt.api)
+  runtimeOnly(libs.jjwt.impl)
+  runtimeOnly(libs.jjwt.jackson)
 
   // Sejong Portal Login
-  api(libs.sejong.portal.login)
+  implementation(libs.sejong.portal.login)
 }
 

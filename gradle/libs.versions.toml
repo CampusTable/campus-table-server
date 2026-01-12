@@ -46,7 +46,9 @@ junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher
 swagger-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "swaggerUI" }
 
 # JJWT
-jjwt = { module = "io.jsonwebtoken:jjwt", version.ref = "jjwt" }
+jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 
 # Kotlin Logging
 kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }
