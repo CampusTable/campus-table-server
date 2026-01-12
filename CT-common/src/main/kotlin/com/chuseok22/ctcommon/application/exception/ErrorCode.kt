@@ -14,6 +14,7 @@ enum class ErrorCode(
 
   // JWT
   INVALID_JWT(HttpStatus.UNAUTHORIZED, "유효하지 않은 JWT"),
+  EXPIRED_JWT(HttpStatus.UNAUTHORIZED, "만료된 JWT"),
 
   // Member
   MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "회원을 없습니다"),
