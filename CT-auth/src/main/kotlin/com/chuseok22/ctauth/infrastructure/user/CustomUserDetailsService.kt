@@ -15,7 +15,7 @@ class CustomUserDetailsService(
 
   @Transactional(readOnly = true)
   override fun loadUserByUsername(username: String): UserDetails {
-    val member = memberRepository.findByStudentNameAndDeletedFalse(username)
+    val member = memberRepository.findByStudentNumberAndDeletedFalse(username)
       ?: throw CustomException(ErrorCode.MEMBER_NOT_FOUND)
     return CustomUserDetails(member)
   }

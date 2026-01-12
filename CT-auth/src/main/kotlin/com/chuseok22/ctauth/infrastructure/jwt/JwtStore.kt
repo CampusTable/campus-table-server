@@ -7,6 +7,11 @@ import java.util.concurrent.TimeUnit
 class JwtStore(
   private val redisTemplate: RedisTemplate<String, String>
 ) : TokenStore {
+
+  override fun get(key: String): String? {
+    return redisTemplate.opsForValue().get(key)
+  }
+
   override fun save(key: String, refreshToken: String, ttlMillis: Long) {
     redisTemplate.opsForValue().set(key, refreshToken, ttlMillis, TimeUnit.MILLISECONDS)
   }

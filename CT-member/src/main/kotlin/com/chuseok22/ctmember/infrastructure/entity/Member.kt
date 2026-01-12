@@ -13,8 +13,8 @@ open class Member protected constructor() : BaseEntity() {
   var id: UUID? = null
     protected set
 
-  @field:Column(name = "student_name", nullable = false)
-  lateinit var studentName: String
+  @field:Column(name = "student_number", nullable = false)
+  lateinit var studentNumber: String
     protected set
 
   @field:Column(name = "name", nullable = false)
@@ -26,18 +26,18 @@ open class Member protected constructor() : BaseEntity() {
   var role: Role = Role.ROLE_USER
     protected set
 
-  private constructor(studentName: String, name: String, role: Role) : this() {
-    this.studentName = normalizeStudentName(studentName)
+  private constructor(studentNumber: String, name: String, role: Role) : this() {
+    this.studentNumber = normalizeStudentNumber(studentNumber)
     this.name = normalizeName(name)
     this.role = role
   }
 
   companion object {
-    fun create(studentName: String, name: String): Member {
-      return Member(studentName, name, Role.ROLE_USER)
+    fun create(studentNumber: String, name: String): Member {
+      return Member(studentNumber, name, Role.ROLE_USER)
     }
 
-    private fun normalizeStudentName(raw: String): String {
+    private fun normalizeStudentNumber(raw: String): String {
       val normalized: String = raw.trim()
       require(normalized.isNotBlank()) { "학번은 필수로 입력되어야 합니다 " }
       return normalized

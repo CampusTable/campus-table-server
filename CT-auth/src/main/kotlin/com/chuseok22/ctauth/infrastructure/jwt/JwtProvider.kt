@@ -24,7 +24,7 @@ class JwtProvider(
       category = AuthConstants.ACCESS_TOKEN_CATEGORY,
       memberId = memberId,
       expMillis = properties.accessExpMillis
-    ).also { log.info { "엑세스 토큰 생성완료: memberId = $memberId" } }
+    ).also { log.debug { "엑세스 토큰 생성완료: memberId = $memberId" } }
   }
 
   override fun createRefreshToken(memberId: String): String {
@@ -32,7 +32,7 @@ class JwtProvider(
       category = AuthConstants.REFRESH_TOKEN_CATEGORY,
       memberId = memberId,
       expMillis = properties.refreshExpMillis
-    ).also { log.info { "리프레시 토큰 생성완료: memberId = $memberId" } }
+    ).also { log.debug { "리프레시 토큰 생성완료: memberId = $memberId" } }
   }
 
   override fun isValidToken(token: String): Boolean {
