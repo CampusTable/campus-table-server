@@ -55,6 +55,10 @@ jobs:
         run: |
           echo "${{ secrets.SPRINGDOC_YML }}" > CT-web/src/main/resources/springdoc.yml
 
+      - name: storage.yml 파일 생성
+        run: |
+          echo "${{ secrets.STORAGE_YML }}" > CT-web/src/main/resources/storage.yml
+
       # 브랜치 별 active profile 설정
       - name: Decide active profile
         id: profile
