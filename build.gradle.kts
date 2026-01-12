@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.allopen.gradle.AllOpenExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -28,6 +29,7 @@ subprojects {
   apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "org.jetbrains.kotlin.plugin.spring")
   apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
+  apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
   apply(plugin = "org.springframework.boot")
   apply(plugin = "io.spring.dependency-management")
 
@@ -35,6 +37,12 @@ subprojects {
     toolchain {
       languageVersion.set(JavaLanguageVersion.of(21))
     }
+  }
+
+  configure<AllOpenExtension> {
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
   }
 
   configurations.named("compileOnly") {
