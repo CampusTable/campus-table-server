@@ -81,7 +81,9 @@ class RedisConfig(
       // 다형성 지원
       activateDefaultTyping(
         BasicPolymorphicTypeValidator.builder()
-          .allowIfBaseType(Any::class.java)
+          .allowIfBaseType("com.chuseok22")
+          .allowIfSubType("java.util")
+          .allowIfSubType("java.time")
           .build(),
         ObjectMapper.DefaultTyping.NON_FINAL
       )
