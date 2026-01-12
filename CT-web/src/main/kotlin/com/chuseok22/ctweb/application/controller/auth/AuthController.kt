@@ -44,8 +44,8 @@ class AuthController(
   @PostMapping("/logout")
   fun logout(
     @AuthenticationPrincipal customUserDetails: CustomUserDetails
-  ): ResponseEntity<Unit> {
-    authService.logout(customUserDetails.getMember())
-    return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+  ): ResponseEntity<Void> {
+    authService.logout(customUserDetails.member)
+    return ResponseEntity.noContent().build()
   }
 }

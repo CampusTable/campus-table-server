@@ -9,7 +9,7 @@ import com.chuseok22.ctauth.infrastructure.util.AuthUtil
 import com.chuseok22.ctcommon.application.exception.CustomException
 import com.chuseok22.ctcommon.application.exception.ErrorCode
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.springframework.data.redis.core.RedisTemplate
+import io.jsonwebtoken.ExpiredJwtException
 import org.springframework.stereotype.Component
 
 private val log = KotlinLogging.logger { }
@@ -18,8 +18,7 @@ private val log = KotlinLogging.logger { }
 class JwtManager(
   private val tokenProvider: TokenProvider,
   private val tokenStore: TokenStore,
-  private val jwtProperties: JwtProperties,
-  private val redisTemplate: RedisTemplate<String, String>
+  private val jwtProperties: JwtProperties
 ) : TokenManager {
 
   override fun createTokenPair(memberId: String): TokenPair {
@@ -42,10 +41,23 @@ class JwtManager(
   }
 
   override fun validateSavedToken(token: String) {
-    val memberId = tokenProvider.getMemberId(token)
+
+    val memberId = try {
+      tokenProvider.getMemberId(token)
+    } catch (e: ExpiredJwtException) {
+      log.warn(e) { "만료된 refreshToken 사용 시도" }
+      throw e
+    } catch (e: Exception) {
+      log.warn(e) { "유효하지 않은 refreshToken 사용 시도" }
+      throw CustomException(ErrorCode.INVALID_JWT)
+    }
+
     val key = getKey(memberId)
-    val savedToken = redisTemplate.opsForValue().get(key)
-      ?: throw CustomException(ErrorCode.INVALID_JWT)
+    val savedToken = tokenStore.get(key) ?: run {
+      log.warn { "Redis에 refreshToken이 존재하지 않습니다: 회원=$memberId" }
+      throw CustomException(ErrorCode.INVALID_JWT)
+    }
+
     if (savedToken != token) {
       log.warn { "유효하지 않은 refreshToken 사용 시도: $memberId" }
       throw CustomException(ErrorCode.INVALID_JWT)

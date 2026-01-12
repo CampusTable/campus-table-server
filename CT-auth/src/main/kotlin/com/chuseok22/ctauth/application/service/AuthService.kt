@@ -42,6 +42,7 @@ class AuthService(
 
     // 토큰 발급
     val tokenPair = tokenManager.createTokenPair(member.id.toString())
+    tokenManager.saveRefreshTokenTtl(member.id.toString(), tokenPair.refreshToken)
 
     log.info { "로그인 성공: 학번=$studentNumber, 이름=$name" }
 
@@ -53,18 +54,15 @@ class AuthService(
     )
   }
 
-  @Transactional
   fun reissue(request: ReissueRequest): ReissueResponse {
-    log.debug { "accessToken이 만료되어 재발급을 진행합니다" }
+    log.debug { "토큰 재발급을 진행합니다" }
     val memberId = tokenProvider.getMemberId(request.refreshToken)
 
     tokenManager.validateSavedToken(request.refreshToken)
 
-    log.debug { "기존에 저장된 refreshToken 삭제" }
-    tokenManager.removeRefreshTokenTtl(memberId)
-
     log.debug { "새로운 accessToken, refreshToken 발급" }
     val tokenPair = tokenManager.createTokenPair(memberId)
+    tokenManager.saveRefreshTokenTtl(memberId, tokenPair.refreshToken)
 
     return ReissueResponse(
       accessToken = tokenPair.accessToken,
@@ -72,7 +70,6 @@ class AuthService(
     )
   }
 
-  @Transactional
   fun logout(member: Member) {
     val memberId = member.id
     log.debug { "로그아웃을 진행합니다: 회원=$memberId" }
