@@ -13,9 +13,13 @@ CREATE TABLE member
   deleted_at   timestamptz  NULL,
 
   CONSTRAINT pk_member PRIMARY KEY (id),
-  CONSTRAINT uq_member_student_name UNIQUE (student_name),
   CONSTRAINT chk_member_role CHECK ( role IN ('ROLE_USER', 'ROLE_ADMIN'))
 );
+
+-- 활성 회원에 대해서 student_name 유니크 적용
+CREATE UNIQUE INDEX uq_member_student_name_active
+  ON member (student_name)
+  WHERE deleted = FALSE;
 
 -- 조회 인덱스 (학번 + 삭제여부)
 CREATE INDEX idx_member_student_name_deleted
