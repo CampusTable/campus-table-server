@@ -14,5 +14,8 @@ object SecurityUrls {
     // Swagger
     "/docs/swagger-ui/**",
     "/v3/api-docs/**",
+
+    // Health Check
+    "/actuator/health",
   )
 }
