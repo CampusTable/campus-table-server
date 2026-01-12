@@ -25,4 +25,8 @@ enum class ErrorCode(
   // Storage
   INVALID_FILE_REQUEST(HttpStatus.BAD_REQUEST, "잘못된 파일 요청입니다"),
   INVALID_FILE_EXTENSION(HttpStatus.BAD_REQUEST, "유효하지 않은 파일 확장자입니다"),
+  DIRECTORY_NOT_FOUND(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드를 위한 디렉토리를 찾을 수 없습니다"),
+  FILE_UPLOAD_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다"),
+  FILE_NOT_FOUND(HttpStatus.BAD_REQUEST, "파일을 찾을 수 없습니다"),
+  FILE_DELETE_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "파일 삭제에 실패했습니다"),
 }
