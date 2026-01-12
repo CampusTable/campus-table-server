@@ -58,6 +58,8 @@ class AuthService(
     log.debug { "accessToken이 만료되어 재발급을 진행합니다" }
     val memberId = tokenProvider.getMemberId(request.refreshToken)
 
+    tokenManager.validateSavedToken(request.refreshToken)
+
     log.debug { "기존에 저장된 refreshToken 삭제" }
     tokenManager.removeRefreshTokenTtl(memberId)
 

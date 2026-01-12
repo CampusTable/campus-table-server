@@ -34,4 +34,8 @@ class CustomUserDetails(
   override fun getName(): String {
     return member.name
   }
+
+  fun getMember(): Member{
+    return member
+  }
 }
