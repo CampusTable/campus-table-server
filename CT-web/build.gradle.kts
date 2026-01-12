@@ -11,5 +11,7 @@ dependencies {
   implementation(libs.swagger.ui)
   implementation(libs.http.logging)
   implementation(libs.api.change.log)
+  implementation(libs.flyway.migration)
+  implementation(libs.flyway.database.postgresql)
 }
 

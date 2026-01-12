@@ -3,6 +3,7 @@
 kotlin = "2.3.0"
 springBoot = "3.5.9"
 springDependencyManagement = "1.1.7"
+flyway = "11.20.1"
 swaggerUI = "2.8.15"
 jjwt = "0.12.7"
 kotlinLogging = "7.0.14"
@@ -22,6 +23,10 @@ spring-boot-starter-validation = { module = "org.springframework.boot:spring-boo
 
 # Test
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+
+# Flyway
+flyway-migration = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
+flyway-database-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flyway" }
 
 # Redis
 spring-boot-starter-data-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis" }

@@ -13,7 +13,7 @@ open class Member protected constructor() : BaseEntity() {
   var id: UUID? = null
     protected set
 
-  @field:Column(name = "student_name", nullable = false, unique = true)
+  @field:Column(name = "student_name", nullable = false)
   lateinit var studentName: String
     protected set
 
