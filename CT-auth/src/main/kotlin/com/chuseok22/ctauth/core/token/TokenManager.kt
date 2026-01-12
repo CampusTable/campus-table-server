@@ -16,4 +16,9 @@ interface TokenManager {
    * refreshToken TTL 삭제
    */
   fun removeRefreshTokenTtl(memberId: String)
+
+  /**
+   * Redis에 저장된 토큰인지 검증
+   */
+  fun validateSavedToken(token: String)
 }
