@@ -9,6 +9,8 @@ import org.springframework.validation.annotation.Validated
 data class StorageProperties(
   @field:NotBlank
   val rootDir: String,
+  @field:NotBlank
+  val baseUrl: String,
   val path: Path
 ) {
   data class Path(
