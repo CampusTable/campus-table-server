@@ -23,7 +23,7 @@ open class Member protected constructor() : BaseEntity() {
 
   @field:Enumerated(EnumType.STRING)
   @field:Column(name = "role", nullable = false)
-  lateinit var role: Role
+  var role: Role = Role.ROLE_USER
     protected set
 
   private constructor(studentName: String, name: String, role: Role) : this() {
