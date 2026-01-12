@@ -36,18 +36,15 @@ class AuthService(
         memberRepository.save(newMember)
       }
 
-    val memberId = member.id?.toString()
-      ?: throw IllegalStateException("memberId가 초기화 되지 않았습니다")
-
     // 토큰 발급
-    val accessToken = tokenProvider.createAccessToken(memberId)
-    val refreshToken = tokenProvider.createRefreshToken(memberId)
+    val accessToken = tokenProvider.createAccessToken(member.id.toString())
+    val refreshToken = tokenProvider.createRefreshToken(member.id.toString())
 
     log.info { "로그인 성공: 학번=$studentNumber, 이름=$name" }
 
     return LoginResponse(
-      studentNumber = sejongMemberInfo.studentId,
-      name = sejongMemberInfo.name,
+      studentNumber = studentNumber,
+      name = name,
       accessToken = accessToken,
       refreshToken = refreshToken
     )
