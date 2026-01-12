@@ -60,7 +60,7 @@ class JwtProvider(
 
   override fun getMemberId(token: String): String {
     return try {
-      getClaims(token)["memberId"] as? String
+      getClaims(token).subject
         ?: throw CustomException(ErrorCode.INVALID_JWT)
     } catch (e: JwtException) {
       log.error(e) { "JWT memberId 추출 실패: ${e.message}" }
