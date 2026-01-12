@@ -25,7 +25,7 @@ class SwaggerConfig(
 ) {
 
   @Bean
-  fun OpenAPI(): OpenAPI {
+  fun openAPI(): OpenAPI {
     val apiKey: SecurityScheme = SecurityScheme()
       .type(SecurityScheme.Type.HTTP)
       .scheme("bearer")

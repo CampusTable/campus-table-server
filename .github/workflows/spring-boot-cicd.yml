@@ -3,7 +3,7 @@ name: spring-boot-cicd
 on:
   push:
     branches:
-#      - main
+      - main
 
 env:
   PROJECT_NAME: campus-table
