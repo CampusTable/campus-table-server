@@ -29,8 +29,8 @@ abstract class BaseEntity {
   /**
    * 삭제 여부
    */
-  @field:Column(name = "is_deleted", nullable = false)
-  var isDeleted: Boolean = false
+  @field:Column(name = "deleted", nullable = false)
+  var deleted: Boolean = false
 
   /**
    * 삭제일시 (UTC)
@@ -42,7 +42,7 @@ abstract class BaseEntity {
    * Soft Delete 실행
    */
   fun delete(now: Instant) {
-    this.isDeleted = true
+    this.deleted = true
     deletedAt = now
   }
 }
