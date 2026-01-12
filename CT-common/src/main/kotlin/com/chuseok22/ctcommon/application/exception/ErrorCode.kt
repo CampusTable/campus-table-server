@@ -17,5 +17,5 @@ enum class ErrorCode(
   EXPIRED_JWT(HttpStatus.UNAUTHORIZED, "만료된 JWT"),
 
   // Member
-  MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "회원을 없습니다"),
+  MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "회원을 찾을 수 없습니다"),
 }
