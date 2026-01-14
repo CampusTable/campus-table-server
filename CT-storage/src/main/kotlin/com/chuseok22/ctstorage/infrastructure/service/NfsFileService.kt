@@ -54,7 +54,7 @@ class NfsFileService(
     val targetPath = resolveAbsolutePathFromStoredPath(storedPath)
 
     // 디렉토리 생성
-    ensureDirectoryExists(targetPath)
+    ensureDirectoryExists(targetPath.parent)
 
     // 파일 저장
     saveFile(file, targetPath)
